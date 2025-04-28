@@ -1,0 +1,128 @@
+/* Reset some basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* Overall container */
+  .container {
+    display: flex;
+    height: 100vh;
+    background-color: #f4f6f8;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 250px;
+    background-color: #2c3e50;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+  }
+  
+  .sidebar h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .sidebar a {
+    color: #ecf0f1;
+    text-decoration: none;
+    margin-bottom: 20px;
+    font-size: 18px;
+    transition: 0.3s;
+  }
+  
+  .sidebar a:hover {
+    color: #1abc9c;
+    transform: translateX(5px);
+  }
+  
+  .logout-btn {
+    margin-top: auto;
+    padding: 12px;
+    background-color: #e74c3c;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .logout-btn:hover {
+    background-color: #c0392b;
+  }
+  
+  /* Main content */
+  .main-content {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+  }
+  
+  .header h1 {
+    margin-bottom: 30px;
+    font-size: 32px;
+    color: #34495e;
+  }
+  
+  /* Sections */
+  .section {
+    margin-bottom: 50px;
+  }
+  
+  .section h2 {
+    font-size: 26px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+  }
+  
+  /* List cards */
+  .list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  
+  /* Doctor card */
+  .doctor-card, .card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .doctor-card:hover, .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .doctor-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #34495e;
+    margin-bottom: 8px;
+  }
+  
+  .doctor-role {
+    font-size: 18px;
+    color: #16a085;
+    margin-bottom: 6px;
+  }
+  
+  .doctor-email {
+    font-size: 16px;
+    color: #7f8c8d;
+  }
+  
+  /* Surgery card (ul li already uses .card class) */
+  .card strong {
+    color: #2c3e50;
+  }
+  

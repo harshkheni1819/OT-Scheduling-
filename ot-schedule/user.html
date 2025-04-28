@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Panel - View Surgeries</title>
+
+  <!-- Firebase SDK v8 -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+  <link rel="stylesheet" href="user.css" />
+</head>
+<body>
+
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h2>User Panel</h2>
+      <a href="#doctorSection">Doctor Details</a>
+      <a href="#surgerySection">Surgical Info</a>
+      <button onclick="logout()" class="logout-btn">Logout</button>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+      <div class="header">
+        <h1>Welcome, User</h1>
+      </div>
+
+      <div class="section" id="doctorSection">
+        <h2>Doctor Details</h2>
+        <ul id="doctorListItems" class="list"></ul>
+      </div>
+
+      <div class="section" id="surgerySection">
+        <h2>Surgical Information</h2>
+        <ul id="surgeryListItems" class="list"></ul>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+
+  <script>
+    // Firebase config
+    var firebaseConfig = {
+      apiKey: "AIzaSyAdWjqicmh30eKbLgtjsSyyGlG8lg6h6SI",
+      authDomain: "ot-schedule-7dbc3.firebaseapp.com",
+      databaseURL: "https://ot-schedule-7dbc3-default-rtdb.firebaseio.com",
+      projectId: "ot-schedule-7dbc3",
+      storageBucket: "ot-schedule-7dbc3.appspot.com",
+      messagingSenderId: "1077228318065",
+      appId: "1:1077228318065:web:fd9e3309c87a7df1cb5ad0"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    function logout() {
+      firebase.auth().signOut().then(function() {
+        alert("Logged out successfully!");
+        window.location.href = "index.html"; // redirect to login page
+      }).catch(function(error) {
+        console.error("Logout Error:", error);
+      });
+    }
+
+    function loadDoctors() {
+      var doctorList = document.getElementById("doctorListItems");
+      doctorList.innerHTML = "";
+
+      firebase.database().ref("doctors").once("value").then(function(snapshot) {
+        if (!snapshot.exists()) {
+          doctorList.innerHTML = "<li>No doctors available.</li>";
+          return;
+        }
+        snapshot.forEach(function(childSnapshot) {
+          var doctor = childSnapshot.val();
+          var li = document.createElement("li");
+          li.textContent = `${doctor.name} (${doctor.role}) - ${doctor.email}`;
+          doctorList.appendChild(li);
+        });
+      }).catch(function(error) {
+        console.error("Error loading doctors:", error);
+      });
+    }
+
+    function loadSurgeries() {
+      var surgeryList = document.getElementById("surgeryListItems");
+      surgeryList.innerHTML = "";
+
+      firebase.database().ref("surgeries").once("value").then(function(snapshot) {
+        if (!snapshot.exists()) {
+          surgeryList.innerHTML = "<li>No surgeries scheduled.</li>";
+          return;
+        }
+        snapshot.forEach(function(childSnapshot) {
+          var surgery = childSnapshot.val();
+          var patientName = surgery.patientName || "N/A";
+          var operationType = surgery.operationType || "N/A";
+          var operationDateTime = surgery.operationDateTime || "N/A";
+          var surgeonName = surgery.surgeonName || "N/A";
+
+          var li = document.createElement("li");
+          li.innerHTML = `
+            <strong>Patient:</strong> ${patientName}<br>
+            <strong>Operation:</strong> ${operationType}<br>
+            <strong>Surgeon:</strong> ${surgeonName}<br>
+            <strong>Scheduled At:</strong> ${new Date(operationDateTime).toLocaleString()}
+          `;
+          li.classList.add("card");
+          surgeryList.appendChild(li);
+        });
+      }).catch(function(error) {
+        console.error("Error loading surgeries:", error);
+      });
+    }
+
+    // Load everything on page load
+    window.onload = function() {
+      loadDoctors();
+      loadSurgeries();
+    };
+  </script>
+
+</body>
+</html>

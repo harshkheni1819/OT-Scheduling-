@@ -1,0 +1,27 @@
+{
+  "rules": {
+    ".read": "auth != null",  
+    ".write": "auth != null", 
+
+    "users": {
+      "$userId": {
+        ".read": "auth != null && $userId === auth.uid",  
+        ".write": "auth != null && $userId === auth.uid" 
+      }
+    },
+
+    "operation_theaters": {
+      "$otId": {
+        ".read": "auth != null",   
+        ".write": "auth != null"   
+      }
+    },
+
+    "surgeries": {
+      "$surgeryId": {
+        ".read": "auth != null",  
+        ".write": "auth != null"  
+      }
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "doctors": {
+    "4": {
+      "email": "ramesh@gmail.com",
+      "name": "RAM",
+      "role": "Dentist"
+    },
+    "-OOuiqOsNYXbF4ktEYv0": {
+      "email": "shiv@gmail.com",
+      "name": "Shiv",
+      "role": "Surgen"
+    },
+    "-OOwwVMP8NUX-62sILrE": {
+      "email": "parvati@gmail.com",
+      "name": "parvati",
+      "role": "phd"
+    }
+  },
+  "surgeries": {
+    "-OOpZcL2SzCN9HhVBXLM": {
+      "operationDateTime": "2025-04-27T11:00",
+      "operationType": "Surgery",
+      "patientName": "Ram",
+      "status": "scheduled",
+      "surgeonName": "harsh"
+    },
+    "-OOub_nLAlymoW8NCyv_": {
+      "operationDateTime": "2025-04-28T09:48",
+      "operationType": "dental checkup",
+      "patientName": "Ram",
+      "status": "scheduled",
+      "surgeonName": "RAM"
+    }
+  },
+  "users": {
+    "S8m1dHD0DzLg5Ns6xt8XehcaICH2": {
+      "email": "harsh@gmail.com",
+      "name": "harsh",
+      "role": "admin"
+    },
+    "i7phNP6VJah9TsL1gi9FHtPjarW2": {
+      "email": "ram@gmail.com",
+      "name": "Ram",
+      "role": "user"
+    }
+  }
+}
